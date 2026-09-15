@@ -25,7 +25,7 @@ Elapsed time is calculated from the stored EAT entry timestamp to the EAT exit t
 - `POST /api/pay` - confirms payment and opens the exit barrier
 - `GET /api/reports` - active sessions, occupancy, and revenue
 
-## Modules and data model
+## Modules and data model`
 
 The application maps the specification into slot availability, entry, exit/fee calculation, payment, barrier control, reporting, and persistence modules. SQLite stores `vehicles`, `parking_slots`, `parking_sessions`, `payments`, and `barrier_logs`. Active sessions are indexed by plate through the database, while the ordered slot query provides deterministic first-free-slot allocation. Every entry and paid exit writes a barrier log for auditability.
 

@@ -97,6 +97,9 @@ def init_db():
 			)
 
 
+init_db()
+
+
 def row_to_dict(row):
 	return dict(row) if row else None
 
@@ -130,7 +133,7 @@ def create_entry():
 		if active:
 			return jsonify(error="This vehicle already has an active session."), 409
 		slot = db.execute(
-			"SELECT * FROM parking_slots WHERE status = 'free' ORDER BY slot_id LIMIT 1"
+			"SELECT * FROM parking_slots WHERE status = 'free' ORDER BY RANDOM() LIMIT 1"
 		).fetchone()
 		if not slot:
 			return jsonify(error="The parking lot is full."), 409
@@ -222,7 +225,7 @@ def reports():
 
 PAGE = r"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SmartPark KE</title><style>
+<title>PARK US</title><style>
 :root{--ink:#10242a;--muted:#678087;--paper:#f5f8f5;--line:#d7e3df;--teal:#007f7b;--lime:#b9db54;--coral:#e86f51;--white:#fff}
 *{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:Georgia,'Times New Roman',serif;background:radial-gradient(circle at 80% 0,#e3f1dd 0,transparent 35%),var(--paper)}
 button,input,select{font:inherit}header{max-width:1180px;margin:auto;padding:32px 22px 20px;display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid var(--line)}
